@@ -3,18 +3,22 @@ from quantumer.components import load_all
 
 class Core:
 
-    # Detector
+    judge_function = False
+    extract_function = False
+    trigger_function = False
+
+    # Detector----------------------------------
     class Detector:
 
         def __init__(self):
             raise NotImplementedError()
 
-    # String operations
+    # String operations-------------------------
     @staticmethod
     def cut_string(input_str, head, tail):
         raise NotImplementedError()
 
-    # Register
+    # Register----------------------------------
     def register_trigger_function(self):
         raise NotImplementedError()
 
@@ -24,7 +28,7 @@ class Core:
     def register_extract_function(self):
         raise NotImplementedError()
 
-    # WeChat operations
+    # WeChat operations-------------------------
     def start(self):
         raise NotImplementedError()
 
