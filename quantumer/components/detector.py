@@ -1,4 +1,4 @@
 import requests
 
-def
-
+def load_detector():
+    pass

@@ -1,3 +1,7 @@
+
+def load_string_operating(core):
+    core.cu
+
 def cut_string(input_str, head, tail):
     if isinstance(
             head,
