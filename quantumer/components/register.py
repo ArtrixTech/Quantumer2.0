@@ -14,6 +14,8 @@ def register_trigger_function(self):
 
     def dec(func):
         self.trigger_function = func
+        if all([self.trigger_function, self.extract_function]):
+            self.function_inited = True
         return func
     return dec
 
@@ -30,5 +32,7 @@ def register_extract_function(self):
 
     def dec(func):
         self.extract_function = func
+        if all([self.trigger_function, self.extract_function]):
+            self.function_inited = True
         return func
     return dec

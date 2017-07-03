@@ -6,6 +6,8 @@ class Core:
     judge_function = False
     extract_function = False
     trigger_function = False
+    function_inited=False
+    detector_pool = dict()
 
     # Detector----------------------------------
     class Detector:
@@ -30,6 +32,12 @@ class Core:
 
     # WeChat operations-------------------------
     def start(self):
+        raise NotImplementedError()
+
+    def new_detector(self, username):
+        raise NotImplementedError()
+
+    def is_in_detector_pool(self, username):
         raise NotImplementedError()
 
 
