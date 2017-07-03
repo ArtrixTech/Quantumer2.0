@@ -43,6 +43,7 @@ class Detector:
             else:
                 raise TypeError
         else:
+            print(trigger)
             if all([isinstance(trigger, FunctionType),
                     isinstance(extract, FunctionType)]):
                 self.__extract_function = extract

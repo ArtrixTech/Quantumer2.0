@@ -5,11 +5,16 @@ from itchat.content import *
 from quantumer.components.detector import Detector
 from quantumer.components.string_operating import cut_string
 
+core=False
+
+def set_core(core2):
+    core=core2
 
 def load_wechat_operating(core):
-    itchat.out_core = core
+    #itchat.out_core = core
     core.new_detector = new_detector
     core.start = start
+    core.is_in_detector_pool=is_in_detector_pool
 
 
 def new_detector(self, username):
@@ -113,7 +118,7 @@ def simple_reply(msg):
 
             command = text.replace("开始监听,", "")
             print("User:" + user_name + "开始新任务")
-            exist = core.is_in_detector_pool(user_name)
+            exist = core.is_in_detector_pool(core, user_name)
 
             if exist:
                 itchat.send("开始新任务！旧任务已停止", user_name)
@@ -122,7 +127,7 @@ def simple_reply(msg):
                 old_det.stop_listening()
             else:
                 itchat.send("开始新任务", user_name)
-            det = core.new_detector(user_name)
+            det = core.new_detector(core,user_name)
 
             # Get arguments from the WeChat commands.
             url = cut_string(command, "url=", ",")
@@ -130,11 +135,12 @@ def simple_reply(msg):
             tail = cut_string(command, "tail1=", ",")
             interval = cut_string(command, "interval=", ",")
 
-            assert core.function_inited
+            # assert core.function_inited
             det.set_url(url)
             det.set_interval(interval)
             det.set_test_func(first_result_show)
-            det.set_functions(core.trigger_function, core.extract_function)
+            print(core)
+            det.set_functions(trigger=core.trigger_function, extract=core.extract_function)
             det.set_args({"head": head, "tail": tail})
 
             def send_task_message():
@@ -151,7 +157,7 @@ def simple_reply(msg):
         elif "停止监听" in text:
 
             user_name = msg['FromUserName']
-            exist = core.is_in_detector_pool(user_name)
+            exist = core.is_in_detector_pool(core, user_name)
 
             if exist:
                 old_det = core.detector_pool[user_name]

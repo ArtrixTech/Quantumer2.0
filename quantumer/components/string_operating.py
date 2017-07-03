@@ -2,7 +2,6 @@ def load_string_operating(core):
     core.cut_string = cut_string
 
 
-@staticmethod
 def cut_string(input_str, head, tail):
     if isinstance(
         head,
@@ -20,20 +19,3 @@ def cut_string(input_str, head, tail):
         return rt_str
     else:
         raise TypeError("Inputs are not string!")
-
-@staticmethod
-def one(kw):
-
-    ret_str = cut_string(
-        kw["content"], kw["head"], kw["tail"])
-
-    return ret_str
-
-@staticmethod
-def two(kw):
-
-    ret_str = cut_string(
-        kw["content"], kw["head"], kw["tail"])
-    ret_str = cut_string(ret_str, kw["head2"], kw["tail2"])
-
-    return ret_str

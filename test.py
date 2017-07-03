@@ -10,4 +10,9 @@ def one(kw):
 
     return ret_str
 
+
+@quantumer.register_trigger_function()
+def show():
+    print("OK!")
+
 quantumer.start()
